@@ -1,0 +1,15 @@
+假设你有一个数组，其中第i个元素是第i天给定股票的价格。
+
+设计一个算法来找到最大的利润。 您可以根据需要完成尽可能多的交易（即多次买入和卖出一次股票）。
+但是，您不可以同时进行多笔交易（即您必须在再次购买之前出售股票）。
+
+class Solution:
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        profit = 0
+        for i in range(1, len(prices)):
+            profit += max(0, prices[i] - prices[i - 1])
+        return profit
