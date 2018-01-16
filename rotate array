@@ -1,0 +1,36 @@
+
+
+一种解法
+将前n-k个原地反转，将后k个原地反转，再将整个数组原地反转，即得所求。【时间复杂度O(n)，空间复杂度O(1)】
+class Solution:
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        k = k % len(nums)
+        self.reverse(nums, 0, len(nums)-k-1)
+        self.reverse(nums, 0, len(nums)-k,len(nums)-1)
+        self.reverse(nums, 0, len(nums)-1)
+        
+     def reverse(self, nums, start, end):
+         while start < end:
+             nums[start], num[end] = nums[end], nums[start]
+             start, end = start + 1, end - 1
+             
+第二种解法
+每次把数组最后k位交换到正确的位置，循环直到所有元素位置正确。
+class Solution(object):
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        k, start, n = k % len(nums), 0, len(nums)
+        while k % n != 0 and n > 0:
+            for i in xrange(k):
+                nums[start + i], nums[len(nums) - k + i] = nums[len(nums) - k + i], nums[start + i]
+            start, n = start + k, n - k
+            k = k % n
