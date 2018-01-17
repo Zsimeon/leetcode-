@@ -44,7 +44,7 @@ class Solution(object):
         """
         k, start, n = k % len(nums), 0, len(nums)
         while k % n != 0 and n > 0:
-            for i in xrange(k):
+            for i in range(k):
                 nums[start + i], nums[len(nums) - k + i] = nums[len(nums) - k + i], nums[start + i]
             start, n = start + k, n - k
             k = k % n
