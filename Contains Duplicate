@@ -1,0 +1,31 @@
+Given an array of integers, find if the array contains any duplicates.
+Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+
+给定一个整数数组，判断其中是否包含重复元素。
+当任何一个值在数组中出现两次时，你的函数应该返回true，否则返回false
+
+解法1：通过字典（HashMap），将出现过的数记录下来，遍历下一个数时检查是否已经出现过
+class Solution:
+    def containDuplicate(self,nums):
+        """
+        :type nums : List[int]
+        :rtype: bool
+        """
+        map = {}
+        for i in nums:
+            if i in map:
+                return True
+            map[i] = True
+        return False
+
+解法2：没有重复的数组相当于集合，利用好python的set函数，将数组转换为集合，若长度与原来相等则说明没有重复
+
+class Solution:
+    def containDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return len(nums) != len(set(nums))
+
+
