@@ -1,0 +1,37 @@
+Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.
+确定一个数独是否有效，根据：数独谜题 - 规则
+The Sudoku board could be partially filled, where empty cells are filled with the character '.'
+数独板可以被部分填满，空单元格填充字符'.'
+A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated
+一个有效的数独板（部分填充）不一定是可以解决的。 只有填充的单元格需要验证
+
+lass Solution:  
+    # @param {character[][]} board  
+    # @return {boolean}  
+    def isValidSudoku(self, board):  
+        if len(board)!=9 or len(board[0])!=9:return False  
+        for i in range(9):  
+            map=[0 for k in range(10)]  
+            for j in range(9):  
+                if board[i][j]=='.':continue  
+                if board[i][j]<'0' or board[i][j]>'9':return False  
+                num = ord(board[i][j])-ord('0')  
+                if map[num]==1:return False  
+                map[num]=1  
+        for j in range(9):  
+            map=[0 for k in range(10)]  
+            for i in range(9):  
+                if board[i][j]=='.':continue  
+                num = ord(board[i][j])-ord('0')  
+                if map[num]==1:return False  
+                map[num]=1  
+        for i in range(0,9,3):  
+            for j in range(0,9,3):  
+                map=[0 for k in range(10)]  
+                for k in range(i,i+3):  
+                    for l in range(j,j+3):  
+                        if board[k][l]=='.':continue  
+                        num = ord(board[k][l])-ord('0')  
+                        if map[num]==1:return False  
+                        map[num]=1  
+        return True  
