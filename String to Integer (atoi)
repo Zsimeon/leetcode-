@@ -1,0 +1,53 @@
+Implement atoi to convert a string to an integer.
+实现atoi来吧字符串转换为整数
+Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.
+提示：仔细考虑所有的可能输入情况。如果你想挑战一下，请不要看下面并问你自己有哪些可能的输入
+Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.
+注意：这个问题的含义是模糊的（即，没有给定输入）。你有责任预先手机所有的输入要求
+spoilers alert... click to show requirements for atoi.
+
+Requirements for atoi:
+The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. 
+Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible,
+and interprets them as a numerical value.
+函数首先丢弃尽可能多的空白字符，直到找到第一个非空白字符。
+接着，从这个字符开始，采用一个可选的初始加号或减号，在其后跟尽可能多的数字
+并把他们解释为一个数值
+
+The string can contain additional characters after those that form the integral number, 
+which are ignored and have no effect on the behavior of this function.
+该字符串可以包含附加字符后面的那些形成整数的数字
+忽略这些字符，对这个函数的行为没有影响
+
+If the first sequence of non-whitespace characters in str is not a valid integral number,
+or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.
+如果str中的第一个非空白字符序列不是有效整数，或者由于str为空或只包含空格字符而不存在这样的序列，则不执行转换
+
+If no valid conversion could be performed, a zero value is returned.
+If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
+如果不能执行有效的转换，则返回零值。如果正确值超出了可表示值的范围，则返回INT_MAX（2147483647）或INT_MIN（-2147483648）。
+
+class Solution:
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        INT_MAX=2147483647;INT_MIN=-2147483648  
+        index=0  
+        while index < len(str) and str[index] == ' ':index += 1  
+        flag=1  
+        if index < len(str) and str[index] == '-':  
+            index += 1  
+            flag = -1  
+        elif index < len(str) and str[index] == '+':  
+            index += 1  
+        res = 0  
+        while index < len(str):  
+            if str[index] < '0' or str[index] > '9':return flag*res  
+            digit = ord(str[index]) - ord('0')  
+            if flag == 1 and res * 10 + digit >  INT_MAX: return INT_MAX  
+            if flag ==-1 and res * 10 + digit > -INT_MIN: return INT_MIN  
+            res=res * 10 + digit  
+            index += 1  
+        return flag * res
