@@ -54,3 +54,26 @@ SL = Solution()
 a = SL.countAndSay(6)
 print(a)
 a = 312211
+
+
+
+class Solution:
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        seq = ['1']
+        top = 1
+        while n - 1 > 0:
+            n -= 1
+            index = 0
+            bak = []
+            i = 0
+            while i < top:
+                num = 1
+                while i + 1 < top and seq[i + 1] == seq[i]: i += 1; num += 1 
+                bak.append(chr(num + ord('0')))
+                i += 1
+            seq = bak; top = len(bak)
+        return ''.join(seq)
