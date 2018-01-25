@@ -43,3 +43,14 @@ class Solution:
                 tmp = s[i]; count = 1
         ans += str(count) + tmp
         return ans
+
+
+SL = Solution()
+a = SL.countAndSay(7)
+print(a)
+a = 13112221
+
+SL = Solution()
+a = SL.countAndSay(6)
+print(a)
+a = 312211
