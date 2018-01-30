@@ -5,6 +5,10 @@ Follow up:
 Can you solve it without using extra space?
 可以不用额外的空间来解决这个问题么
 
+
+使用快慢指针。如果链表有环，则两指针必在某一时刻相等
+
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
