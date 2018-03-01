@@ -1,0 +1,81 @@
+Given two strings s and t, write a function to determine if t is an anagram of s.
+给你两个字符串s和t，写一个函数来确定t是否是s的anagram
+For example,例如
+s = "anagram", t = "nagaram", return true.
+s = "rat", t = "car", return false.
+
+Note:
+You may assume the string contains only lowercase alphabets.
+假定只包含小写字母
+Follow up:
+What if the inputs contain unicode characters? How would you adapt your solution to such case?
+如果包含unicode字符怎么办，要怎么调整代码来适应这个问题
+
+解法1：把字符串转为list，再排序，看俩排序后的list是否相同
+class Solution:
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        lstr1 = list(s)
+        sstr1 = lstr1.sort()
+        lstr2 = list(t)
+        sstr2 = lstr2.sort()
+        print(lstr1, lstr2)
+        if lstr1 == lstr2:
+            return True
+        else:
+            return False
+
+解法2：统计两个字符串中不同字符出现的次数，只有当两者出现的字符相同且出现的次数相同时，他们才是anagram
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        if len(s) != len(t):
+            return False
+
+        alpha = [0] * 26
+        beta = [0] * 26
+        for c in s:
+            alpha[ord(c) - 97] += 1
+        for c in t:
+            beta[ord(c) - 97] += 1
+        return alpha == beta
+        
+
+字符串中如果有unicode，那就用字典
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        if len(s) != len(t):
+            return False
+        
+        alpha = {}
+        beta = {}
+        for c in s:
+            alpha[c] = alpha.get(c,0) + 1
+        for c in t:
+            beta[c] = beta.get(c, 0) + 1
+        return alpha == beta
+        
+        
+        
+解法3：两个字符串若是 “anagram”，则它们只是顺序不一样的相同字符的组合，那么将它们排序后比较是否相等即可。
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        return sorted(s) == sorted(t)

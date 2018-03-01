@@ -1,0 +1,23 @@
+Given a non-negative integer represented as a non-empty array of digits, plus one to the integer.
+给定一个非负的整数表示一个非空的数字集，给这个整数加一
+You may assume the integer do not contain any leading zero, except the number 0 itself.
+你必须假设这个整数不包含任何前导0，除了0本身
+The digits are stored such that the most significant digit is at the head of the list.
+数字被存储，使最有效的数字位于列表的头部
+
+class Solution:
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        len_1 = len(digits)
+        carry = 1
+        for i in range(len_1 - 1, -1, -1):
+            total = digits[i] + carry
+            digit = int(total % 10)
+            carry = int(total / 10)
+            digits[i] = digit
+        if 1 == carry:
+            digits.insert(0, 1)
+        return digits

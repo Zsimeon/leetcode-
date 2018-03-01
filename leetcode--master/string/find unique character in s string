@@ -1,0 +1,48 @@
+给定一个字符串，找到第一个在这个字符串中不重复的字母，并返回他的索引。如果不存在返回-1
+
+例如：
+s = "leetcode"
+return 0
+
+注意，你要假定这个字符串只包含小写字符
+
+
+class Solution:
+    def firstUniqChar(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        cache = []
+        for i in range(0, len(s)):
+            if s[i] not in cache:
+                if s.count(s[i]) == 1:
+                    return i
+                else:
+                    cache.append(s[i])
+            else:
+                    continue
+        return -1
+
+解法2：先把所有字符出现的次数统计出来，再重新遍历原字符串中的字符，直到发现一个字符只出现一次，返回其下标值。
+class Solution:
+    def firstUniqChar(self, s):
+        cache = {}
+        for i in s:
+            cache[i] = cache[i] + 1 if i in cache else 1
+        for m in range(len(s)):
+            if cache[s[m]] == 1:
+                return i
+        return -1
+        
+
+解法3：用数组统计出字符的出现次数
+class Solution:
+    def firsstUniqChar(self, s):
+        cache = [0] * 26
+        for i in s:
+            cache[ord(i) - 97] += 1
+        for m in range(len(s)):
+            if cache[ord(s[m]) - 97] == 1:
+                return m
+        return -1

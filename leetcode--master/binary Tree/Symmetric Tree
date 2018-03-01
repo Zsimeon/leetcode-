@@ -1,0 +1,103 @@
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+给定一个二叉树，检查它自身是否是对称的
+For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
+例如，这个二叉树[1,2,2,3,4,4,3] 是对称的：
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+But the following [1,2,2,null,3,null,3] is not:
+但下面这个不是：
+    1
+   / \
+  2   2
+   \   \
+   3    3
+Note:
+Bonus points if you could solve it both recursively and iteratively.
+能否recursively 或 iteratively的解决这个问题
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def xs(self, left, right):
+        if left == None and right == None:
+            return True
+        if left and right and left.val == right.val:
+            return self.xs(left.left, right.right) and self.xs(left.right, right.left)
+        else:
+            return False
+    
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype :bool
+        """"
+        if root == None:
+            return True
+        return self.xs(root.left, root.right)
+        
+        
+        
+        
+  解法2:iterative
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def xs(self,left,right):
+        if left == None and right == None:
+            return True
+        if left and right and left.val == right.val:
+            return self.xs(left.left,right.right) and self.xs(left.right,right.left)
+        else:
+            return False
+        
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if root == None:
+            return True
+        if root.left == None and root.right == None:
+            return True
+        if root.left == None or root.right == None:
+            return False
+        stack1 = []
+        stack2 = []
+        stack1.append(root.left)
+        stack2.append(root.right)
+        while len(stack1) != 0 and len(stack2) != 0:
+            n1 = stack1.pop()
+            n2 = stack2.pop()
+            if n1.val != n2.val
+                return False
+            if n1.left == None and n2.right != None or n1.left != None and n2.right == None:
+                return False
+            if n1.right == None and n2.left != None or n1.right != None and n2.left == None:
+                return False
+            if n1.left and n2.right:
+                stack1.append(n1.left)
+                stack2.append(n2.right)
+            if n1.right and n2.left:
+                stack1.append(n1.right)
+                stack2.append(n2.left)
+        return True
+        
+        
+        
+        
+        
+        
+        

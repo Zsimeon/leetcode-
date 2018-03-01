@@ -1,0 +1,12 @@
+Write a function that takes a string as input and ruturns the string reversed
+写一个函数，以字符串为输入，反序输出字符串
+例如：
+给你“Hello”，输出“olleH”
+
+class Solutino:
+    def reverseString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        return s[::-1]

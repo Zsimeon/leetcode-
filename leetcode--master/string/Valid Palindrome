@@ -1,0 +1,24 @@
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+给定一个字符串，确定它是不是回文，只考虑字母和数字的情况
+For example,例如
+"A man, a plan, a canal: Panama" is a palindrome.
+"race a car" is not a palindrome.
+
+Note:
+Have you consider that the string might be empty? This is a good question to ask during an interview.
+你注意到这个字符串可能是空的么？这会是个在面试中反问的好问题
+For the purpose of this problem, we define empty string as valid palindrome.
+对于这个问题，我们定义空字符串是有效的回文
+
+class Solution:
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        NS = [i.lower() for i in s if i.isalnum()]
+        return NS = NS[::-1]
+        
+        
+        
+利用python的列表生成器和列表操作来解决，先用列表生成器去掉数字和字母以外的字符得到一个新的字符，然后直接判断该串各该串的逆序是否相等

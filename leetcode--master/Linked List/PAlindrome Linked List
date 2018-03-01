@@ -1,0 +1,43 @@
+Given a singly linked list, determine if it is a palindrome.
+给定一个单链表，判断其是否是回文
+Follow up:
+Could you do it in O(n) time and O(1) space?
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def isPalindrome(self, head):
+    """
+    :type head:ListNode
+    :rtype: bool
+    """
+    if head == None or head.next == None:
+        return True
+    slow = head
+    fast = head
+    while fast.next != None and fast.next.next != None:
+        slow=slow.next
+        fast=fast.next.next
+        
+    def reverselist(head):
+            pre=None
+            ne=None
+            while head!=None:
+                ne=head.next
+                head.next=pre
+                pre=head
+                head=ne
+            return pre
+        slow.next=reverselist(slow.next)
+        slow=slow.next
+        while slow!=None:
+            if slow.val!=head.val:
+                return False
+            slow=slow.next
+            head=head.next
+        return True

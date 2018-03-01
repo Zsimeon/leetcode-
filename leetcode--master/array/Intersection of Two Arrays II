@@ -1,0 +1,78 @@
+Given two arrays, write a function to compute their intersection.
+
+Example:
+Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].
+
+Note:
+Each element in the result should appear as many times as it shows in both arrays.
+The result can be in any order.
+Follow up:
+What if the given array is already sorted? How would you optimize your algorithm?
+What if nums1's size is small compared to nums2's size? Which algorithm is better?
+What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
+
+给定两个数组，写一个函数来计算它们的交集。
+
+例：
+给定nums1 = [1,2,2,1]，nums2 = [2,2]，返回[2,2]。
+
+注意：
+结果中的每个元素都应该出现在两个数组中。
+结果可以以任何顺序。
+跟进：
+如果给定的数组已经排序呢？ 你将如何优化你的算法？
+如果nums1的大小小于nums2的大小呢？ 哪个算法更好？
+如果nums2的元素存储在磁盘上，内存是有限的，你不能一次加载所有的元素到内存中？
+
+解法一：遍历第一个列表的每个元素，并在第二个列表中查找该元素是否出现，若出现结果集中没有，则加入到结果集中
+class Solution:
+    def intersect(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+        res = []
+        for k in nums1:
+            index = -1
+            for j in range(0, len(nums2)):
+                if nums2[j] == k:
+                    index = j
+                    break
+            if index != -1:
+                res.append(k)
+                del nums2[index]
+                
+        return res
+        
+ 解法二：将两个数组统计成dict，再计算交集，可以用python的collection模块的counter来帮助统计，实现一行代码AC
+ class Solution:
+    def intersect(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """     
+        return list((collections.Counter(nums1) & collections.Counter(nums2)).elements())
+
+
+ class Solution:
+    def intersect(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """ 
+        counts = collections.Counter(nums1)
+        result = []
+        
+        for num in nums2:
+            if counts[num] > 0:
+                result.append(num)
+                counts[num] -= 1
+         
+         return result
+         
+
+        
+        
